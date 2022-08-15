@@ -1,6 +1,5 @@
 package com.blazingpotato.securityapp.repo;
 
-import com.blazingpotato.securityapp.domain.AppUser;
 import com.blazingpotato.securityapp.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
