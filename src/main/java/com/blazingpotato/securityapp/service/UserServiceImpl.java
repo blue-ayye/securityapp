@@ -17,7 +17,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Service @RequiredArgsConstructor @Transactional @Slf4j
+@Service
+@RequiredArgsConstructor
+@Transactional
+@Slf4j
 public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepo userRepo;
     private final RoleRepo roleRepo;
@@ -36,7 +39,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.getRoles().forEach(role -> {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         });
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),authorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 
     @Override
