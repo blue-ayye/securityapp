@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+    public static final String SECRET_KEY = "secret";
     private final AuthenticationManager authenticationManager;
 
     public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
@@ -47,7 +48,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                                             Authentication authentication) throws IOException, ServletException {
         User user = (User) authentication.getPrincipal();
 //        Secret Key must be encrypted somewhere secure and liked via a utility class
-        Algorithm algorithm = Algorithm.HMAC256("Secret Key".getBytes());
+        Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY.getBytes());
         String access_token = JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + (10 * 60 * 1000)))
